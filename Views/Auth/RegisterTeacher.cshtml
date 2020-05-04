@@ -1,0 +1,64 @@
+@{
+    Layout = "_Layout";
+}
+@model SDMS.Models.Dtos.TeacherRegisterDto
+<div class="row">
+    <div class="container col-4">
+        <form asp-action="PostRegisterTeacher" asp-controller="Auth" method="post">
+            <div class="form-group">
+                <label for="Name">Name</label>
+                <input asp-for="Name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="CardNumber">CardNumber</label>
+                <input asp-for="CardNumber" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="Password">Password</label>
+                <input asp-for="Password" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="Email">Email</label>
+                <input asp-for="Email" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="Gender">Gender</label>
+                <select asp-for="Gender" asp-items="Html.GetEnumSelectList<Gender>()" class="form-control">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Details">Details</label>
+                <input asp-for="Details" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="CVPath">CV Path</label>
+                <input asp-for="CVPath" class="form-control">
+            </div>
+            <div class="form-group">
+                @foreach (var course in (ViewBag.Courses as List<TeacherCourseAddDto>))
+                {
+                    <span class="col-2">
+                        <input name="courses" type="checkbox" value="@course.Id">
+                        <label for="courses">@course.Name</label>
+                    </span>
+                }
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <div class="container col-4">
+        @if(ViewBag.Error != "")
+        {
+            <div class="alert alert-warning" role="alert">
+                @ViewBag.Error
+            </div>
+        }
+        @if(ViewBag.Info != "")
+        {
+            <div class="alert alert-info" role="alert">
+                @ViewBag.Info
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,37 @@
+@{
+    Layout = "_Layout";
+}
+@model SDMS.Models.Dtos.TeacherReturnDto
+
+<div class="container">
+    <div class="card" style="width: 50%;">
+        <div class="card-body">
+            <h5 class="card-title">
+                Name: @Model.Name
+            </h5>
+            <h6 class="card-subtitle mb-2">
+                Email: @Model.Email
+            </h6>
+            <p class="card-text">
+                Details: @Model.Details
+            </p>
+            <a class="card-link" href="#">Go to CV</a>
+        </div>
+        <div class="row">
+            @foreach (var course in Model.Courses)
+            {
+                <div class="card col-6" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Name: @course.Name</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        Credit: <strong>@course.Credit</strong>
+                        Absence limit: <strong>@course.AbsenceLimit</strong>
+                    </h6>
+                    <a href="@course.SyllabusPath" class="card-link">Syllabus</a>
+                    <a href="#" class="card-link">Go to course info</a>
+                </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
