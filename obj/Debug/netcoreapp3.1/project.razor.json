@@ -20571,6 +20571,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/alvan/Projects/SDMS/Views/Home/Index.cshtml",
+      "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/alvan/Projects/SDMS/Views/Students/TakenCourses.cshtml",
       "TargetPath": "Views\\Students\\TakenCourses.cshtml",
       "FileKind": "mvc"

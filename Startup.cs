@@ -37,27 +37,7 @@ namespace SDMS
                     options.LoginPath = "/Auth/Register";
                     options.AccessDeniedPath = "/Auth/AccesDenied";
                 });
-            // services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            //     .AddJwtBearer(options =>
-            //     {
-            //         options.TokenValidationParameters = new TokenValidationParameters
-            //         {
-            //             ValidateIssuer = true,
-            //             ValidateLifetime = true,
-            //             ValidateIssuerSigningKey = true,
-            //             ValidateAudience = true,
-            //             ValidIssuer = _config["Jwt:Issuer"],
-            //             ValidAudience = _config["Jwt:Audience"],
-            //             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]))
-            //         };
-            //     });
-            //=================== COOKIE HANDLING ===============================
-            // services.Configure<CookiePolicyOptions>(options =>
-            // {
-            //     options.CheckConsentNeeded = context => true;
-            //     options.MinimumSameSitePolicy = SameSiteMode.None;
-            // });
-            //===================================================================
+            
             services.AddControllersWithViews();
             services.AddDbContext<SDMSContext>(options =>
             {
@@ -86,7 +66,7 @@ namespace SDMS
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Auth}/{action=Login}/{id?}"
+                    pattern: "{controller=Home}/{action=Index}/{id?}"
                 );
             });
         }

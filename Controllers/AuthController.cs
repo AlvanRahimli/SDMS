@@ -161,31 +161,11 @@ namespace SDMS.Controllers
 
                 await HttpContext.SignInAsync(principal);
 
-                return RedirectToAction("GetStudentProfile");
+                return RedirectToAction("GetProfile");
             }
             return RedirectToAction(
                 "GetLoginStudent",
                 routeValues: new { error = result.Message }
-            );
-        }
-
-        [HttpGet]
-        [Authorize(Roles = "student,teacher")]
-        [Route("StudentProfile")]
-        public async Task<IActionResult> GetStudentProfile()
-        {
-            var id = HttpContext.User.Claims
-                .FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
-            var idGuid = Guid.Parse(id);
-
-            var studentViewModel = await _repo.GetStudent(idGuid);
-
-            if (studentViewModel.IsSuccess)
-                return View("StudentProfile", model: studentViewModel.Content);
-
-            return RedirectToAction(
-                "GetLoginStudent",
-                routeValues: new { error = "Couldn't load student profile." }
             );
         }
 
@@ -229,7 +209,8 @@ namespace SDMS.Controllers
 
                 await HttpContext.SignInAsync(principal);
 
-                return RedirectToAction("GetTeacherProfile");
+                return RedirectToAction("GetProfile");
+                // return RedirectToAction("GetTeacherProfile");
             }
             return RedirectToAction(
                 "GetLoginTeacher",
@@ -237,23 +218,86 @@ namespace SDMS.Controllers
             );
         }
 
+        // [HttpGet]
+        // [Authorize(Roles = "teacher")]
+        // [Route("TeacherProfile")]
+        // public async Task<IActionResult> GetTeacherProfile()
+        // {
+        //     var id = HttpContext.User.Claims
+        //         .FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+        //     var idGuid = Guid.Parse(id);
+
+        //     var response = await _repo.GetTeacher(idGuid);
+
+        //     if (response.IsSuccess)
+        //         return View("TeacherProfile", model: response.Content);
+
+        //     return RedirectToAction(
+        //         "LoginTeacher",
+        //         routeValues: new { error = "Couldn't log in teacher" }
+        //     );
+        // }
+
+        // [HttpGet]
+        // [Authorize(Roles = "student,teacher")]
+        // [Route("StudentProfile")]
+        // public async Task<IActionResult> GetStudentProfile()
+        // {
+        //     var id = HttpContext.User.Claims
+        //         .FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+        //     var idGuid = Guid.Parse(id);
+
+        //     var studentViewModel = await _repo.GetStudent(idGuid);
+
+        //     if (studentViewModel.IsSuccess)
+        //         return View("StudentProfile", model: studentViewModel.Content);
+
+        //     return RedirectToAction(
+        //         "GetLoginStudent",
+        //         routeValues: new { error = "Couldn't load student profile." }
+        //     );
+        // }
+
         [HttpGet]
-        [Authorize(Roles = "teacher")]
-        [Route("TeacherProfile")]
-        public async Task<IActionResult> GetTeacherProfile()
+        [Authorize]
+        [Route("Profile")]
+        public async Task<IActionResult> GetProfile()
         {
             var id = HttpContext.User.Claims
                 .FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
             var idGuid = Guid.Parse(id);
 
-            var response = await _repo.GetTeacher(idGuid);
+            var role = HttpContext.User.Claims
+                .FirstOrDefault(c => c.Type == ClaimTypes.Role).Value;
+            
+            if (role == "student")
+            {
+                var studentViewModel = await _repo.GetStudent(idGuid);
 
-            if (response.IsSuccess)
-                return View("TeacherProfile", model: response.Content);
+                if (studentViewModel.IsSuccess)
+                    return View("StudentProfile", model: studentViewModel.Content);
+
+                return RedirectToAction(
+                    "GetLoginStudent",
+                    routeValues: new { error = "Couldn't load student profile." }
+                );
+            }
+            else if (role == "teacher")
+            {
+                var response = await _repo.GetTeacher(idGuid);
+
+                if (response.IsSuccess)
+                    return View("TeacherProfile", model: response.Content);
+
+                return RedirectToAction(
+                    "LoginTeacher",
+                    routeValues: new { error = "Couldn't log in teacher" }
+                );
+            }
 
             return RedirectToAction(
-                "LoginTeacher",
-                routeValues: new { error = "Couldn't log in teacher" }
+                actionName: "Index",
+                controllerName: "Home"
             );
         }
 

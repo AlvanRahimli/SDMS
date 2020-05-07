@@ -39,8 +39,15 @@ using System.Collections.Generic;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "/home/alvan/Projects/SDMS/Views/_ViewImports.cshtml"
+using System.Security.Claims;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"06b3aa01862b94d26df8dbd7d7e8411de955f81d", @"/Views/Students/TakenCourses.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c7e9968b171d1a710a2c363dd6b78a9472837a44", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f562ccb195649efefbdb395e4fb2524d9a263c3d", @"/Views/_ViewImports.cshtml")]
     public class Views_Students_TakenCourses : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<SDMS.Models.Dtos.CourseReturnDto>>
     {
         #pragma warning disable 1998

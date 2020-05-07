@@ -8,6 +8,7 @@ using SDMS.Data;
 using SDMS.Models;
 using SDMS.Models.Dtos;
 using SDMS.Utilities;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace SDMS.Repos.Students
 {
@@ -360,6 +361,12 @@ namespace SDMS.Repos.Students
                 Content = absences,
                 Message = _config["SuccessCodes:found"]
             };
+        }
+    
+        public bool IsSignedIn()
+        {
+
+            return false;
         }
     }
 }

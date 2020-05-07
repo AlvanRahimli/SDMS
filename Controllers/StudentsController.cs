@@ -31,8 +31,7 @@ namespace SDMS.Controllers
             {
                 return RedirectToAction(
                     "GetCoursesToChoose",
-                    // routeValues: new { error = _config["ErrorCodes:model_state"] }
-                    routeValues: new { error = ModelState }
+                    routeValues: new { error = _config["ErrorCodes:model_state"] }
                 );
             }
 

@@ -1,3 +1,7 @@
+@{
+    var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role).Value;
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,14 +22,45 @@
                 <li class="nav-item">
                     <a asp-action="Choose" asp-controller="Students"></a>
                 </li>
+
+                @if (User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role).Value == "student")
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" asp-action="Choose" asp-controller="Students">Choose</a>
+                            <a class="dropdown-item" asp-action="LoadTaken" asp-controller="Students">Taken Courses</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                }
             </ul>
-            <a asp-action="Register" asp-controller="Auth" class="nav-link">Register</a>
-            <a asp-action="GetLoginStudent" asp-controller="Auth" class="nav-link">Login Student</a>
-            <a asp-action="GetLoginTeacher" asp-controller="Auth" class="nav-link">Login Teacher</a>
-            <a asp-action="LogOut" asp-controller="Auth" class="nav-link">Log Out</a>
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <a asp-action="Register" asp-controller="Auth" class="nav-link">Register</a>
+                <a asp-action="GetLoginStudent" asp-controller="Auth" class="nav-link">Login Student</a>
+                <a asp-action="GetLoginTeacher" asp-controller="Auth" class="nav-link">Login Teacher</a>
+            }
+            else
+            {
+                
+                <a asp-action="LogOut" asp-controller="Auth" class="nav-link">Log Out</a>
+                <a asp-action="GetProfile" asp-controller="Auth" class="nav-link">@User.Identity.Name</a>
+
+            }
         </div>
     </nav>
     <br>
     @RenderBody()
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" 
+    integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" 
+    crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" 
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" 
+    crossorigin="anonymous"></script>
 </body>
 </html>

@@ -39,8 +39,15 @@ using System.Collections.Generic;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "/home/alvan/Projects/SDMS/Views/_ViewImports.cshtml"
+using System.Security.Claims;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"39018fbd92b4711b67fb03f17b15c89df3186a3f", @"/Views/Students/Choose.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c7e9968b171d1a710a2c363dd6b78a9472837a44", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f562ccb195649efefbdb395e4fb2524d9a263c3d", @"/Views/_ViewImports.cshtml")]
     public class Views_Students_Choose : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<SDMS.Models.Dtos.CourseNameIdDto>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "SelectCourses", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -81,7 +88,7 @@ using System.Collections.Generic;
 #line hidden
 #nullable disable
             WriteLiteral("<div class=\"row\">\n    <div class=\"container col-4\">\n        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "39018fbd92b4711b67fb03f17b15c89df3186a3f4651", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "39018fbd92b4711b67fb03f17b15c89df3186a3f4807", async() => {
                 WriteLiteral("\n");
 #nullable restore
 #line 8 "/home/alvan/Projects/SDMS/Views/Students/Choose.cshtml"
@@ -154,7 +161,7 @@ WriteAttributeValue("", 1030, i, 1030, 2, false);
                 BeginWriteAttribute("id", " id=\"", 1044, "\"", 1049, 0);
                 EndWriteAttribute();
                 WriteLiteral(">\n                                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "39018fbd92b4711b67fb03f17b15c89df3186a3f7852", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "39018fbd92b4711b67fb03f17b15c89df3186a3f8008", async() => {
                     WriteLiteral("Choose");
                 }
                 );
@@ -188,7 +195,7 @@ WriteAttributeValue("", 1030, i, 1030, 2, false);
 #line hidden
 #nullable disable
                 WriteLiteral("                                    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "39018fbd92b4711b67fb03f17b15c89df3186a3f9807", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "39018fbd92b4711b67fb03f17b15c89df3186a3f9963", async() => {
 #nullable restore
 #line 28 "/home/alvan/Projects/SDMS/Views/Students/Choose.cshtml"
                                                            Write(teacher.Name);

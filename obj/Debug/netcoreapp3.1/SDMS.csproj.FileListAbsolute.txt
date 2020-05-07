@@ -89,3 +89,4 @@
 /home/alvan/Projects/SDMS/bin/Debug/netcoreapp3.1/System.ComponentModel.Annotations.dll
 /home/alvan/Projects/SDMS/bin/Debug/netcoreapp3.1/System.Diagnostics.DiagnosticSource.dll
 /home/alvan/Projects/SDMS/bin/Debug/netcoreapp3.1/System.Text.Json.dll
+/home/alvan/Projects/SDMS/obj/Debug/netcoreapp3.1/Razor/Views/Home/Index.cshtml.g.cs
