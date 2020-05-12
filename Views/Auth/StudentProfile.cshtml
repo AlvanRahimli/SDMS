@@ -13,30 +13,31 @@
                 Email: @Model.Email
             </h6>
             <h6 class="card-subtitle mb-2">
-                Email: @Model.SpecialityName
+                Speciality: @Model.SpecialityName
             </h6>
             <p class="card-text">
                 Details: @Model.Details
             </p>
             
         </div>
-        <div class="row">
-            @foreach (var course in Model.CurrentCourses)
-            {
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Name: @course.Name</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">
-                            Credit: <strong>@course.Credit</strong>
-                            Absence limit: <strong>@course.AbsenceLimit</strong>
-                        </h6>
-                        <a href="@course.SyllabusPath" class="card-link">Syllabus</a>
-                        <a href="#" class="card-link">@course.Teacher.Name</a>
-                        <a href="#" class="card-link">Go to course info</a>
-                    </div>
-                </div>
-            }
-        </div>
     </div>
+    <br>
+    <hr>
+    <h2>Current courses:</h2>
+    @foreach (var course in Model.CurrentCourses)
+    {
+        <div class="card" style="width: 50%; margin-top: 20px;">
+            <div class="card-body">
+                <h5 class="card-title">Name: @course.Name</h5>
+                <h6 class="card-subtitle mb-2 text-muted">
+                    Credit: <strong>@course.Credit</strong>
+                    Absence limit: <strong>@course.AbsenceLimit</strong>
+                </h6>
+                <a href="@course.SyllabusPath" class="card-link">Syllabus</a>
+                <a href="#" class="card-link">@course.Teacher.Name</a>
+                <a href="#" class="card-link">Go to course info</a>
+            </div>
+        </div>
+    }
 </div>
 

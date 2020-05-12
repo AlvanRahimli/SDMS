@@ -43,6 +43,7 @@ namespace SDMS.Utilities
 
         public static void Seed(this ModelBuilder builder)
         {
+            Random rnd = new Random();
             var calcI_Id = Guid.NewGuid();
             var calcII_Id = Guid.NewGuid();
             var prob_Id = Guid.NewGuid();
@@ -267,7 +268,39 @@ namespace SDMS.Utilities
                     Id = Guid.NewGuid(),
                     StudentId = alvanId,
                     CourseId = calcI_Id,
-                    Date = DateTime.Now.AddMonths(-3),
+                    Date = new DateTime(2019, 9, 15).AddDays(rnd.Next(10, 600)),
+                    ScoreOver100 = 93
+                },
+                new Score()
+                {
+                    Id = Guid.NewGuid(),
+                    StudentId = alvanId,
+                    CourseId = calcII_Id,
+                    Date = new DateTime(2019, 9, 15).AddDays(rnd.Next(10, 600)),
+                    ScoreOver100 = 93
+                },
+                new Score()
+                {
+                    Id = Guid.NewGuid(),
+                    StudentId = alvanId,
+                    CourseId = calcII_Id,
+                    Date = new DateTime(2019, 9, 15).AddDays(rnd.Next(10, 600)),
+                    ScoreOver100 = 93
+                },
+                new Score()
+                {
+                    Id = Guid.NewGuid(),
+                    StudentId = alvanId,
+                    CourseId = calcII_Id,
+                    Date = new DateTime(2019, 9, 15).AddDays(rnd.Next(10, 600)),
+                    ScoreOver100 = 93
+                },
+                new Score()
+                {
+                    Id = Guid.NewGuid(),
+                    StudentId = alvanId,
+                    CourseId = calcII_Id,
+                    Date = new DateTime(2019, 9, 15).AddDays(rnd.Next(10, 600)),
                     ScoreOver100 = 93
                 },
                 new Score()
@@ -275,7 +308,7 @@ namespace SDMS.Utilities
                     Id = Guid.NewGuid(),
                     StudentId = samirId,
                     CourseId = calcI_Id,
-                    Date = DateTime.Now.AddMonths(-2),
+                    Date = new DateTime(2019, 9, 15).AddMonths(-2),
                     ScoreOver100 = 85
                 },
                 new Score()
@@ -283,7 +316,7 @@ namespace SDMS.Utilities
                     Id = Guid.NewGuid(),
                     StudentId = samirId,
                     CourseId = calcII_Id,
-                    Date = DateTime.Now.AddMonths(-3).AddDays(12),
+                    Date = new DateTime(2019, 9, 15).AddMonths(-3).AddDays(12),
                     ScoreOver100 = 100
                 }
             );

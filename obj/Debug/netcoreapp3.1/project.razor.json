@@ -20541,6 +20541,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/alvan/Projects/SDMS/Views/Shared/SelectDate.cshtml",
+      "TargetPath": "Views\\Shared\\SelectDate.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/alvan/Projects/SDMS/Views/Auth/LoginTeacher.cshtml",
       "TargetPath": "Views\\Auth\\LoginTeacher.cshtml",
       "FileKind": "mvc"
@@ -20551,6 +20556,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/alvan/Projects/SDMS/Views/Auth/AccesDenied.cshtml",
+      "TargetPath": "Views\\Auth\\AccesDenied.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/alvan/Projects/SDMS/Views/Auth/StudentProfile.cshtml",
       "TargetPath": "Views\\Auth\\StudentProfile.cshtml",
       "FileKind": "mvc"
@@ -20558,6 +20568,11 @@
     {
       "FilePath": "/home/alvan/Projects/SDMS/Views/Auth/LoginStudent.cshtml",
       "TargetPath": "Views\\Auth\\LoginStudent.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/alvan/Projects/SDMS/Views/Students/Scores.cshtml",
+      "TargetPath": "Views\\Students\\Scores.cshtml",
       "FileKind": "mvc"
     },
     {

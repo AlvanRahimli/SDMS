@@ -1,38 +1,34 @@
 @{
     Layout = "_Layout";
+    var courses = ViewBag.Courses as List<CourseReturnDto>;
 }
 @model List<SDMS.Models.Dtos.CourseNameIdDto>
 <div class="row">
     <div class="container col-4">
         <form asp-action="SelectCourses" asp-controller="Students" method="post">
-        @{
-            var courses = ViewBag.Courses as List<CourseReturnDto>;
-            for (int i = 0; i < courses.Count; i++)
-            {
-                <div class="card" style="width: 100%;">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <input type="checkbox" name="[@i].Id" value="@courses[i].Id">
-                            @courses[i].Name
-                        </h5>
-                        <h6 class="card-subtitle mb-2">
-                            Credit: <strong>@courses[i].Credit</strong>
-                            <br>
-                            Absence: <strong>@courses[i].AbsenceLimit</strong>
-                        </h6>
-                        @*<p class="card-text">*@
-                            <select name="[@i].TeacherId" id="">
-                                <option value="@Guid.Empty">Choose</option>
-                                @foreach (var teacher in courses[i].Teachers)
-                                {
-                                    <option value="@teacher.Id">@teacher.Name</option>
-                                }
-                            </select>
-                        @*</p>*@
-                        <a href="#" class="card-link">Go to Course</a>
-                    </div>
+        @for (int i = 0; i < courses.Count; i++)
+        {
+            <div class="card" style="width: 100%; margin-top: 20px;">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <input type="checkbox" name="[@i].Id" value="@courses[i].Id">
+                        @courses[i].Name
+                    </h5>
+                    <h6 class="card-subtitle mb-2">
+                        Credit: <strong>@courses[i].Credit</strong>
+                        <br>
+                        Absence: <strong>@courses[i].AbsenceLimit</strong>
+                    </h6>
+                        <select name="[@i].TeacherId" id="">
+                            <option value="@Guid.Empty">Choose</option>
+                            @foreach (var teacher in courses[i].Teachers)
+                            {
+                                <option value="@teacher.Id">@teacher.Name</option>
+                            }
+                        </select>
+                    <a href="#" class="card-link">Go to Course</a>
                 </div>
-            }
+            </div>
         }
         <button type="submit" class="btn btn-primary">Choose</button>
         </form>
@@ -46,11 +42,3 @@
         }
     </div>
 </div>
-@*
-@foreach (var course in (ViewBag.Courses as List<CourseReturnDto>))
-    {
-        <div class="row">
-            
-        </div>
-    }
-*@

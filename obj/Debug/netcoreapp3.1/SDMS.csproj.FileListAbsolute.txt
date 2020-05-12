@@ -90,3 +90,6 @@
 /home/alvan/Projects/SDMS/bin/Debug/netcoreapp3.1/System.Diagnostics.DiagnosticSource.dll
 /home/alvan/Projects/SDMS/bin/Debug/netcoreapp3.1/System.Text.Json.dll
 /home/alvan/Projects/SDMS/obj/Debug/netcoreapp3.1/Razor/Views/Home/Index.cshtml.g.cs
+/home/alvan/Projects/SDMS/obj/Debug/netcoreapp3.1/Razor/Views/Auth/AccesDenied.cshtml.g.cs
+/home/alvan/Projects/SDMS/obj/Debug/netcoreapp3.1/Razor/Views/Shared/SelectDate.cshtml.g.cs
+/home/alvan/Projects/SDMS/obj/Debug/netcoreapp3.1/Razor/Views/Students/Scores.cshtml.g.cs

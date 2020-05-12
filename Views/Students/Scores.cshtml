@@ -1,0 +1,33 @@
+@{
+    Layout = "_Layout";
+    var scores = (ViewBag.Scores as List<Score>);
+}
+<div class="container">
+    @if(scores.Count == 0)
+    {
+        <div class="alert alert-warning" role="alert">
+            No records found
+        </div>
+    }
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <td>No</td>
+                <td scope="col">Score</td>
+                <td scope="col">Course</td>
+                <td scope="col">Date</td>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < scores.Count; i++)
+            {
+                <tr>
+                    <th scope="row">@i</th>
+                    <td>@scores[i].ScoreOver100</td>
+                    <td>@scores[i].Course.Name</td>
+                    <td>@scores[i].Date.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

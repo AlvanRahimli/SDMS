@@ -2,22 +2,39 @@
     Layout = "_Layout";
 }
 @model List<SDMS.Models.Dtos.CourseReturnDto>
+
 <div class="container">
-    @for (int i = 0; i < Model.Count; i += 4)
+    @for (int i = 0; i < Model.Count; i += 2)
     {
         <div class="row">
-            @for (int j = i; j < 4 && j < Model.Count; j++)
-            {
-                <div class="card" style="width: 18rem; margin-left: 20px;">
+            <div class="col-6">
+                <div class="card" style="width: 100%; margin-top: 20px;">
                     <div class="card-body">
-                        <h5 class="card-title">Name: @Model[j].Name</h5>
+                        <h5 class="card-title">Name: @Model[i].Name</h5>
                         <h6 class="card-subtitle mb-2 text-muted">
-                            Credit: <strong>@Model[j].Credit</strong>
-                            Absence limit: <strong>@Model[j].AbsenceLimit</strong>
+                            Credit: <strong>@Model[i].Credit</strong>
+                            Absence limit: <strong>@Model[i].AbsenceLimit</strong>
                         </h6>
-                        <a href="@Model[j].SyllabusPath" class="card-link">Syllabus</a>
-                        <a href="#" class="card-link">@Model[j].Teacher.Name</a>
+                        <a href="@Model[i].SyllabusPath" class="card-link">Syllabus</a>
+                        <a href="#" class="card-link">@Model[i].Teacher.Name</a>
                         <a href="#" class="card-link">Go to course info</a>
+                    </div>
+                </div>
+            </div>
+            @if (i < Model.Count - 1)
+            {
+                <div class="col-6">
+                    <div class="card" style="width: 100%; margin-top: 20px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Name: @Model[i + 1].Name</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                Credit: <strong>@Model[i + 1].Credit</strong>
+                                Absence limit: <strong>@Model[i + 1].AbsenceLimit</strong>
+                            </h6>
+                            <a href="@Model[i + 1].SyllabusPath" class="card-link">Syllabus</a>
+                            <a href="#" class="card-link">@Model[i + 1].Teacher.Name</a>
+                            <a href="#" class="card-link">Go to course info</a>
+                        </div>
                     </div>
                 </div>
             }

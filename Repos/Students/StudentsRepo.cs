@@ -286,7 +286,7 @@ namespace SDMS.Repos.Students
                 .AsNoTracking()
                 .Where(ccs => ccs.CourseId == courseId && ccs.StudentId == studentId)
                 .ToListAsync();
-            if (student != null)
+            if (student == null)
             {
                 return new RepoResponse<List<Score>>()
                 {
@@ -298,6 +298,7 @@ namespace SDMS.Repos.Students
 
             var scores = await _context.Scores
                 .AsNoTracking()
+                .Include(s => s.Course)
                 .Where(s => DateTime.Compare(s.Date, startDate) > 0
                             && DateTime.Compare(s.Date, finishDate) < 0
                             && s.StudentId == studentId
@@ -362,11 +363,62 @@ namespace SDMS.Repos.Students
                 Message = _config["SuccessCodes:found"]
             };
         }
-    
-        public bool IsSignedIn()
-        {
 
-            return false;
+        public async Task<RepoResponse<List<CourseReturnDto>>> LoadCurrentCourses(Guid studentId)
+        {
+            var student = await _context.Students
+                .AsNoTracking()
+                .FirstOrDefaultAsync(s => s.Id == studentId);
+            if (student == null)
+            {
+                return new RepoResponse<List<CourseReturnDto>>()
+                {
+                    IsSuccess = false,
+                    Message = _config["ErrorCodes:not_found"]
+                };
+            }
+
+            var courses = await _context.CurrentCourseStudents
+                .AsNoTracking()
+                .Include(x => x.Course)
+                .Include(x => x.CourseTeacher)
+                .Where(c => c.StudentId == studentId)
+                .Select(x => new CourseReturnDto()
+                {
+                    Id = x.Course.Id,
+                    Name = x.Course.Name,
+                    AbsenceLimit = x.Course.AbsenceLimit,
+                    Credit = x.Course.Credit,
+                    SyllabusPath = x.Course.SyllabusPath,
+                    Teacher = new TeacherReturnDto()
+                    {
+                        Id = x.CourseTeacher.Id,
+                        CardNumber = x.CourseTeacher.CardNumber,
+                        CVPath = x.CourseTeacher.CVPath,
+                        Details = x.CourseTeacher.Details,
+                        Email = x.CourseTeacher.Email,
+                        Gender = x.CourseTeacher.Gender,
+                        Name = x.CourseTeacher.Name,
+                        RegisterStatus = x.CourseTeacher.RegisterStatus
+                    }
+                }).ToListAsync();
+
+            if (courses == null)
+            {
+                return new RepoResponse<List<CourseReturnDto>>()
+                {
+                    IsSuccess = false,
+                    Content = null,
+                    Message = _config["ErrorCodes:not_found"]
+                };
+            }
+
+            return new RepoResponse<List<CourseReturnDto>>()
+            {
+                IsSuccess = true,
+                Content = courses,
+                Message = _config["SuccessCodes:found"]
+            };
         }
     }
 }

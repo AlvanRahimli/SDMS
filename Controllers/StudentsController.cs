@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using SDMS.Models.Dtos;
@@ -12,6 +13,7 @@ namespace SDMS.Controllers
 {
     [Controller]
     [Route("[controller]")]
+    [Authorize(Roles = "student")]
     public class StudentsController : Controller
     {
         private readonly IStudentsRepo _repo;
@@ -24,7 +26,7 @@ namespace SDMS.Controllers
         }
 
         [HttpPost]
-        [Route("choose")]
+        [Route("Choose")]
         public async Task<IActionResult> SelectCourses(List<CourseNameIdDto> courses)
         {
             if (!ModelState.IsValid)
@@ -55,7 +57,7 @@ namespace SDMS.Controllers
         }
 
         [HttpGet]
-        [Route("choose")]
+        [Route("Choose")]
         public async Task<IActionResult> GetCoursesToChoose(string error = "")
         {
             var id = HttpContext.User.Claims
@@ -98,10 +100,54 @@ namespace SDMS.Controllers
 
         [HttpGet]
         [Route("LoadScores")]
-        public IActionResult LoadScores(string error = "")
+        public async Task<IActionResult> LoadScores(string error = "")
         {
+            var id = HttpContext.User.Claims
+                .FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            var idGuid = Guid.Parse(id);
+
+            var result = await _repo.LoadCurrentCourses(idGuid);
+
+            if (result.IsSuccess)
+            {
+                ViewBag.Courses = result.Content;
+                ViewData["For"] = "Course";
+                return View("SelectDate");
+            }
+
             ViewBag.Error = error;
-            return View("Scores");
+            return View("Oops");
+        }
+
+        [HttpPost]
+        [Route("LoadScores")]
+        public async Task<IActionResult> LoadScores(DateModel dm)
+        {
+            if (dm.ForId == Guid.Empty)
+            {
+                return RedirectToAction(
+                    actionName: "LoadScores",
+                    controllerName: "Students"
+                );
+            }
+            var id = HttpContext.User.Claims
+                .FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            var idGuid = Guid.Parse(id);
+
+            var result = await _repo.LoadScores(idGuid, dm.ForId, dm.StartDate, dm.FinishDate);
+
+            if (result.IsSuccess)
+            {
+                ViewBag.Scores = result.Content;
+                ViewBag.Message = result.Message;
+                return View("Scores");
+            }
+
+            return RedirectToAction(
+                actionName: "LoadScores",
+                controllerName: "Students",
+                routeValues: new { error = result.Message }
+            );
         }
     }
 }

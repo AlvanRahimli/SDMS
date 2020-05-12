@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SDMS.Data;
 
 namespace SDMS.Migrations
 {
     [DbContext(typeof(SDMSContext))]
-    partial class SDMSContextModelSnapshot : ModelSnapshot
+    [Migration("20200511180039_SeedEdited")]
+    partial class SeedEdited
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

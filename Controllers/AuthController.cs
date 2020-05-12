@@ -218,46 +218,6 @@ namespace SDMS.Controllers
             );
         }
 
-        // [HttpGet]
-        // [Authorize(Roles = "teacher")]
-        // [Route("TeacherProfile")]
-        // public async Task<IActionResult> GetTeacherProfile()
-        // {
-        //     var id = HttpContext.User.Claims
-        //         .FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
-        //     var idGuid = Guid.Parse(id);
-
-        //     var response = await _repo.GetTeacher(idGuid);
-
-        //     if (response.IsSuccess)
-        //         return View("TeacherProfile", model: response.Content);
-
-        //     return RedirectToAction(
-        //         "LoginTeacher",
-        //         routeValues: new { error = "Couldn't log in teacher" }
-        //     );
-        // }
-
-        // [HttpGet]
-        // [Authorize(Roles = "student,teacher")]
-        // [Route("StudentProfile")]
-        // public async Task<IActionResult> GetStudentProfile()
-        // {
-        //     var id = HttpContext.User.Claims
-        //         .FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
-        //     var idGuid = Guid.Parse(id);
-
-        //     var studentViewModel = await _repo.GetStudent(idGuid);
-
-        //     if (studentViewModel.IsSuccess)
-        //         return View("StudentProfile", model: studentViewModel.Content);
-
-        //     return RedirectToAction(
-        //         "GetLoginStudent",
-        //         routeValues: new { error = "Couldn't load student profile." }
-        //     );
-        // }
-
         [HttpGet]
         [Authorize]
         [Route("Profile")]
@@ -303,10 +263,18 @@ namespace SDMS.Controllers
 
         [HttpGet]
         [Authorize]
+        [Route("LogOut")]
         public async Task<IActionResult> LogOut()
         {
             await HttpContext.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        [Route("AccesDenied")]
+        public IActionResult AccesDenied()
+        {
+            return View();
         }
     }
 }

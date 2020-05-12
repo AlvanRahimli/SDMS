@@ -11,6 +11,7 @@ namespace SDMS.Repos.Students
     {
         Task<RepoResponse<List<CourseReturnDto>>> LoadCoursesToChoose(Guid studentId);
         Task<RepoResponse<List<CourseReturnDto>>> LoadTakenCourses(Guid studentId);
+        Task<RepoResponse<List<CourseReturnDto>>> LoadCurrentCourses(Guid studentId);
         Task<RepoResponse<List<CourseNameIdDto>>> ChooseCourses(Guid studentId,
             List<CourseNameIdDto> courses);
         Task<RepoResponse<List<Score>>> LoadScores(Guid studentId, Guid courseId,
