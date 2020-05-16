@@ -93,3 +93,5 @@
 /home/alvan/Projects/SDMS/obj/Debug/netcoreapp3.1/Razor/Views/Auth/AccesDenied.cshtml.g.cs
 /home/alvan/Projects/SDMS/obj/Debug/netcoreapp3.1/Razor/Views/Shared/SelectDate.cshtml.g.cs
 /home/alvan/Projects/SDMS/obj/Debug/netcoreapp3.1/Razor/Views/Students/Scores.cshtml.g.cs
+/home/alvan/Projects/SDMS/obj/Debug/netcoreapp3.1/Razor/Views/Students/Attendances.cshtml.g.cs
+/home/alvan/Projects/SDMS/obj/Debug/netcoreapp3.1/Razor/Views/Shared/Oops.cshtml.g.cs

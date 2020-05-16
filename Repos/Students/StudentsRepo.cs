@@ -329,7 +329,7 @@ namespace SDMS.Repos.Students
                 .AsNoTracking()
                 .Where(ccs => ccs.CourseId == courseId && ccs.StudentId == studentId)
                 .ToListAsync();
-            if (student != null)
+            if (student == null)
             {
                 return new RepoResponse<List<Absence>>()
                 {

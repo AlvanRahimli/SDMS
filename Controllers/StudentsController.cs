@@ -99,7 +99,7 @@ namespace SDMS.Controllers
         }
 
         [HttpGet]
-        [Route("LoadScores")]
+        [Route("Scores")]
         public async Task<IActionResult> LoadScores(string error = "")
         {
             var id = HttpContext.User.Claims
@@ -111,7 +111,7 @@ namespace SDMS.Controllers
             if (result.IsSuccess)
             {
                 ViewBag.Courses = result.Content;
-                ViewData["For"] = "Course";
+                ViewData["For"] = "scores";
                 return View("SelectDate");
             }
 
@@ -120,7 +120,7 @@ namespace SDMS.Controllers
         }
 
         [HttpPost]
-        [Route("LoadScores")]
+        [Route("Scores")]
         public async Task<IActionResult> LoadScores(DateModel dm)
         {
             if (dm.ForId == Guid.Empty)
@@ -145,6 +145,58 @@ namespace SDMS.Controllers
 
             return RedirectToAction(
                 actionName: "LoadScores",
+                controllerName: "Students",
+                routeValues: new { error = result.Message }
+            );
+        }
+
+        [HttpGet]
+        [Route("Attendances")]
+        public async Task<IActionResult> LoadAttendances(string error = "")
+        {
+            var id = HttpContext.User.Claims
+                .FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            var idGuid = Guid.Parse(id);
+
+            var result = await _repo.LoadCurrentCourses(idGuid);
+
+            if (result.IsSuccess)
+            {
+                ViewBag.Courses = result.Content;
+                ViewData["For"] = "attendances";
+                return View("SelectDate");
+            }
+
+            ViewBag.Error = error;
+            return View("Oops");
+        }
+
+        [HttpPost]
+        [Route("Attendances")]
+        public async Task<IActionResult> LoadAttendances(DateModel dm)
+        {
+            if (dm.ForId == Guid.Empty)
+            {
+                return RedirectToAction(
+                    actionName: "LoadAttendances",
+                    controllerName: "Students"
+                );
+            }
+            var id = HttpContext.User.Claims
+                .FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            var idGuid = Guid.Parse(id);
+
+            var result = await _repo.LoadAttendances(idGuid, dm.ForId, dm.StartDate, dm.FinishDate);
+
+            if (result.IsSuccess)
+            {
+                ViewBag.Attendances = result.Content;
+                ViewBag.Message = result.Message;
+                return View("Attendances");
+            }
+
+            return RedirectToAction(
+                actionName: "LoadAttendances",
                 controllerName: "Students",
                 routeValues: new { error = result.Message }
             );

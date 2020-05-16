@@ -20536,6 +20536,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/alvan/Projects/SDMS/Views/Shared/Oops.cshtml",
+      "TargetPath": "Views\\Shared\\Oops.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/alvan/Projects/SDMS/Views/Auth/TeacherProfile.cshtml",
       "TargetPath": "Views\\Auth\\TeacherProfile.cshtml",
       "FileKind": "mvc"
@@ -20548,6 +20553,11 @@
     {
       "FilePath": "/home/alvan/Projects/SDMS/Views/Auth/LoginTeacher.cshtml",
       "TargetPath": "Views\\Auth\\LoginTeacher.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/alvan/Projects/SDMS/Views/Students/Attendances.cshtml",
+      "TargetPath": "Views\\Students\\Attendances.cshtml",
       "FileKind": "mvc"
     },
     {

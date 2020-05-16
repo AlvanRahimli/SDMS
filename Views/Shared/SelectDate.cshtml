@@ -1,13 +1,24 @@
 @{
     Layout = "_Layout";
     var courses = (ViewBag.Courses as List<CourseReturnDto>);
+    var actionName = "";
+    switch (ViewData["For"])
+    {
+        case "scores":
+            actionName = "Scores";
+            break;
+        case "attendances":
+            actionName = "Attendances";
+            break;
+        // Add cases for post action name;
+    }
 }
 @model DateModel
 
 <div class="container">
     <div class="jumbotron">
         <h1>Select date to load @ViewData["For"]</h1>
-        <form asp-action="LoadScores" asp-controller="Students" method="post">
+        <form asp-action="@actionName" asp-controller="Students" method="post">
             <div class="form-group">
                 <label for="ForId">Course</label>
                 <select name="ForId" id="ForId">
