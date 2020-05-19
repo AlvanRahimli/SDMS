@@ -55,6 +55,10 @@ namespace SDMS.Utilities
             var infotechId = Guid.NewGuid();
             var alvanId = Guid.NewGuid();
             var samirId = Guid.NewGuid();
+            var sebineId = Guid.NewGuid();
+            var rufetId = Guid.NewGuid();
+            var sahinId = Guid.NewGuid();
+            var nigarId = Guid.NewGuid();
             var anarId = Guid.NewGuid();
             var konulId = Guid.NewGuid();
             var ulviyyeId = Guid.NewGuid();
@@ -158,6 +162,58 @@ namespace SDMS.Utilities
                     Details = "BA Programs",
                     Gender = Gender.Male,
                     Password = ComputeHash("samir12345"),
+                    RegisterStatus = RegistrationStatus.Approved,
+                    Role = Role.Student,
+                    SpecialityId = systemEngId
+                },
+                new Student()
+                {
+                    Id = sebineId,
+                    Name = "Sabina Shukurova",
+                    Email = "sabina@sdms.az",
+                    CardNumber = "SABI001",
+                    Details = "BA Programs",
+                    Gender = Gender.Female,
+                    Password = ComputeHash("sabina12345"),
+                    RegisterStatus = RegistrationStatus.Approved,
+                    Role = Role.Student,
+                    SpecialityId = systemEngId
+                },
+                new Student()
+                {
+                    Id = rufetId,
+                    Name = "Rufat Karimli",
+                    Email = "rufat@sdms.az",
+                    CardNumber = "RUFA001",
+                    Details = "BA Programs",
+                    Gender = Gender.Male,
+                    Password = ComputeHash("rufat12345"),
+                    RegisterStatus = RegistrationStatus.Approved,
+                    Role = Role.Student,
+                    SpecialityId = systemEngId
+                },
+                new Student()
+                {
+                    Id = sahinId,
+                    Name = "Sahin Mahmudov",
+                    Email = "sahin@sdms.az",
+                    CardNumber = "SAHI001",
+                    Details = "BA Programs",
+                    Gender = Gender.Male,
+                    Password = ComputeHash("sahin12345"),
+                    RegisterStatus = RegistrationStatus.Approved,
+                    Role = Role.Student,
+                    SpecialityId = systemEngId
+                },
+                new Student()
+                {
+                    Id = nigarId,
+                    Name = "Nigar Alakbarli",
+                    Email = "nigar@sdms.az",
+                    CardNumber = "NIGA001",
+                    Details = "BA Programs",
+                    Gender = Gender.Female,
+                    Password = ComputeHash("nigar12345"),
                     RegisterStatus = RegistrationStatus.Approved,
                     Role = Role.Student,
                     SpecialityId = systemEngId
@@ -338,12 +394,6 @@ namespace SDMS.Utilities
                     CourseId = calcI_Id,
                     StudentId = samirId,
                     CourseTeacherId = anarId
-                },
-                new TakenCourseStudent()
-                {
-                    CourseId = calcII_Id,
-                    StudentId = samirId,
-                    CourseTeacherId = anarId
                 }
             );
             builder.Entity<CurrentCourseStudent>().HasData(
@@ -351,6 +401,30 @@ namespace SDMS.Utilities
                 {
                     StudentId = alvanId,
                     CourseId = calcII_Id,
+                    CourseTeacherId = anarId
+                },
+                new TakenCourseStudent()
+                {
+                    CourseId = calcII_Id,
+                    StudentId = sebineId,
+                    CourseTeacherId = anarId
+                },
+                new TakenCourseStudent()
+                {
+                    CourseId = calcII_Id,
+                    StudentId = sahinId,
+                    CourseTeacherId = anarId
+                },
+                new TakenCourseStudent()
+                {
+                    CourseId = calcII_Id,
+                    StudentId = rufetId,
+                    CourseTeacherId = anarId
+                },
+                new TakenCourseStudent()
+                {
+                    CourseId = calcII_Id,
+                    StudentId = nigarId,
                     CourseTeacherId = anarId
                 }
             );

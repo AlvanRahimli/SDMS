@@ -201,5 +201,23 @@ namespace SDMS.Controllers
                 routeValues: new { error = result.Message }
             );
         }
+    
+        [HttpGet]
+        [Route("Student")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Student(Guid sId)
+        {
+            if (sId == Guid.Empty)
+                return View("Oops");
+            
+            var result = await _repo.GetStudent(sId);
+
+            if (result.IsSuccess)
+            {
+                return View("Student", result.Content);
+            }
+
+            return View("Oops");
+        }
     }
 }

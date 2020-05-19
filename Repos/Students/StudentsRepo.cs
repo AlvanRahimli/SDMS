@@ -193,7 +193,6 @@ namespace SDMS.Repos.Students
                     .Select(tc => new TeacherReturnDto()
                     {
                         Id = tc.Teacher.Id,
-                        CardNumber = tc.Teacher.CardNumber,
                         CVPath = tc.Teacher.CVPath,
                         Details = tc.Teacher.Details,
                         Email = tc.Teacher.Email,
@@ -251,7 +250,6 @@ namespace SDMS.Repos.Students
                     Teacher = new TeacherReturnDto()
                     {
                         Id = x.CourseTeacher.Id,
-                        CardNumber = x.CourseTeacher.CardNumber,
                         CVPath = x.CourseTeacher.CVPath,
                         Details = x.CourseTeacher.Details,
                         Email = x.CourseTeacher.Email,
@@ -303,6 +301,7 @@ namespace SDMS.Repos.Students
                             && DateTime.Compare(s.Date, finishDate) < 0
                             && s.StudentId == studentId
                             && s.CourseId == courseId)
+                .OrderByDescending(s => s.Date)
                 .ToListAsync();
             if (scores == null)
             {
@@ -341,10 +340,12 @@ namespace SDMS.Repos.Students
 
             var absences = await _context.Absences
                 .AsNoTracking()
+                .Include(a => a.Course)
                 .Where(s => DateTime.Compare(s.DateTime, startDate) > 0
                             && DateTime.Compare(s.DateTime, finishDate) < 0
                             && s.StudentId == studentId
                             && s.CourseId == courseId)
+                .OrderBy(a => a.DateTime)
                 .ToListAsync();
             if (absences == null)
             {
@@ -393,7 +394,6 @@ namespace SDMS.Repos.Students
                     Teacher = new TeacherReturnDto()
                     {
                         Id = x.CourseTeacher.Id,
-                        CardNumber = x.CourseTeacher.CardNumber,
                         CVPath = x.CourseTeacher.CVPath,
                         Details = x.CourseTeacher.Details,
                         Email = x.CourseTeacher.Email,
@@ -417,6 +417,66 @@ namespace SDMS.Repos.Students
             {
                 IsSuccess = true,
                 Content = courses,
+                Message = _config["SuccessCodes:found"]
+            };
+        }
+
+        public async Task<RepoResponse<StudentReturnDto>> GetStudent(Guid sId)
+        {
+            var student = await _context.Students
+                .AsNoTracking()
+                .Select(s => new StudentReturnDto()
+                {
+                    Id = s.Id,
+                    Details = s.Details,
+                    Email = s.Email,
+                    Gender = s.Gender,
+                    Name = s.Name,
+                    SpecialityId = s.SpecialityId,
+                    SpecialityName = s.Speciality.Name
+                })
+                .FirstOrDefaultAsync(s => s.Id == sId);
+            
+            if (student == null)
+            {
+                return new RepoResponse<StudentReturnDto>()
+                {
+                    Content = null,
+                    IsSuccess = false,
+                    Message = _config["ErrorCodes:not_found"]
+                };
+            }
+
+            var currentCourses = await _context.CurrentCourseStudents
+                .AsNoTracking()
+                .Include(ccs => ccs.Course)
+                .Where(ccs => ccs.StudentId == sId)
+                .Select(c => new CourseReturnDto()
+                {
+                    Id = c.Course.Id,
+                    Name = c.Course.Name,
+                    AbsenceLimit = c.Course.AbsenceLimit,
+                    Credit = c.Course.Credit,
+                    SyllabusPath = c.Course.SyllabusPath,
+                    Teacher = new TeacherReturnDto()
+                    {
+                        Id = c.CourseTeacher.Id,
+                        CVPath = c.CourseTeacher.CVPath,
+                        Details = c.CourseTeacher.Details,
+                        Email = c.CourseTeacher.Email,
+                        Gender = c.CourseTeacher.Gender,
+                        Name = c.CourseTeacher.Name,
+                        RegisterStatus = c.CourseTeacher.RegisterStatus
+                    }
+                })
+                .ToListAsync();
+
+            student.CurrentCourses = currentCourses;
+
+            return new RepoResponse<StudentReturnDto>()
+            {
+                Content = student,
+                IsSuccess = true,
                 Message = _config["SuccessCodes:found"]
             };
         }

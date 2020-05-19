@@ -502,7 +502,6 @@ namespace SDMS.Repos.Auth
                             Teacher = new TeacherReturnDto()
                             {
                                 Id = ccs.CourseTeacher.Id,
-                                CardNumber = ccs.CourseTeacher.CardNumber,
                                 CVPath = ccs.CourseTeacher.CVPath,
                                 Details = ccs.CourseTeacher.Details,
                                 Email = ccs.CourseTeacher.Email,

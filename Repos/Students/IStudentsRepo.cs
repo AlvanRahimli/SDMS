@@ -18,5 +18,6 @@ namespace SDMS.Repos.Students
             DateTime startDate, DateTime finishDate);
         Task<RepoResponse<List<Absence>>> LoadAttendances(Guid studentId, Guid courseId,
             DateTime startDate, DateTime finishDate);
+        Task<RepoResponse<StudentReturnDto>> GetStudent(Guid sId);
     }
 }

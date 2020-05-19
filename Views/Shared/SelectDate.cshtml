@@ -21,7 +21,7 @@
         <form asp-action="@actionName" asp-controller="Students" method="post">
             <div class="form-group">
                 <label for="ForId">Course</label>
-                <select name="ForId" id="ForId">
+                <select name="ForId" id="ForId" class="form-control">
                     <option value="@Guid.Empty">Choose</option>
                     @foreach (var course in courses)
                     {

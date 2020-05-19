@@ -1,0 +1,26 @@
+@{
+    Layout = "_Layout";
+    string action = ViewBag.Action as string;
+    string controller = ViewBag.Controller as string;
+    var courses = ViewBag.Courses as List<TeacherCourseAddDto>;
+}
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>Select course</h1>
+        @*Post Form*@
+        <form asp-action="@action" asp-controller="@controller" method="post">
+            <div class="form-group">
+                <label for="courseId">Course</label>
+                <select name="courseId" id="courseId" class="form-control">
+                    <option value="@Guid.Empty">Choose</option>
+                    @foreach (var course in courses)
+                    {
+                        <option value="@course.Id">@course.Name</option>
+                    }
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>

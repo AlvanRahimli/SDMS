@@ -1,6 +1,6 @@
 @{
     Layout = "_Layout";
-    var attendances = (ViewBag.Attendances as List<Absence>);
+    var attendances = ViewBag.Attendances as List<Absence>;
 }
 <div class="container">
     @if(attendances.Count == 0)
@@ -13,7 +13,6 @@
         <thead>
             <tr>
                 <td>No</td>
-                <td scope="col">Score</td>
                 <td scope="col">Course</td>
                 <td scope="col">Date</td>
             </tr>
@@ -23,6 +22,7 @@
             {
                 <tr>
                     <th scope="row">@i</th>
+                    <td>@attendances[i].Course.Name</td>
                     <td>@attendances[i].DateTime.ToShortDateString()</td>
                 </tr>
             }

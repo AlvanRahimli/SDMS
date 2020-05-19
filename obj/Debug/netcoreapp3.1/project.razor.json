@@ -20551,6 +20551,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/alvan/Projects/SDMS/Views/Teachers/Courses.cshtml",
+      "TargetPath": "Views\\Teachers\\Courses.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/alvan/Projects/SDMS/Views/Auth/LoginTeacher.cshtml",
       "TargetPath": "Views\\Auth\\LoginTeacher.cshtml",
       "FileKind": "mvc"
@@ -20581,6 +20586,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/alvan/Projects/SDMS/Views/Shared/SelectCourse.cshtml",
+      "TargetPath": "Views\\Shared\\SelectCourse.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/alvan/Projects/SDMS/Views/Students/Scores.cshtml",
       "TargetPath": "Views\\Students\\Scores.cshtml",
       "FileKind": "mvc"
@@ -20588,6 +20598,11 @@
     {
       "FilePath": "/home/alvan/Projects/SDMS/Views/Auth/RegisterTeacher.cshtml",
       "TargetPath": "Views\\Auth\\RegisterTeacher.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/alvan/Projects/SDMS/Views/Teachers/StudentList.cshtml",
+      "TargetPath": "Views\\Teachers\\StudentList.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -20603,6 +20618,11 @@
     {
       "FilePath": "/home/alvan/Projects/SDMS/Views/Students/TakenCourses.cshtml",
       "TargetPath": "Views\\Students\\TakenCourses.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/alvan/Projects/SDMS/Views/Students/Student.cshtml",
+      "TargetPath": "Views\\Students\\Student.cshtml",
       "FileKind": "mvc"
     }
   ],

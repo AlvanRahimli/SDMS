@@ -1,0 +1,68 @@
+@{
+    Layout = "_Layout";
+}
+@model List<StudentReturnDto>
+
+<div class="container">
+    <h2 style="text-align: center;">@ViewBag.Course</h2>
+
+    @if(Model.Count == 0)
+    {
+        <div class="alert alert-warning" role="alert">
+            No records found
+        </div>
+    }
+    @if(ViewBag.Error != "")
+    {
+        <div class="alert alert-warning" role="alert">
+            @ViewBag.Error
+        </div>
+    }
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <td>No</td>
+                <td scope="col">Name</td>
+                <td scope="col">Speciality</td>
+                <td scope="col">Email</td>
+                <td scope="col">Action</td>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <th scope="row">@(i+1)</th>
+                    <td>
+                        <a asp-action="Student" asp-controller="Students" 
+                        asp-route-sId="@Model[i].Id">@Model[i].Name</a>
+                    </td>
+                    <td>
+                        <a asp-action="Speciality" asp-controller="Specialities" 
+                        asp-route-sId="@Model[i].SpecialityId">@Model[i].SpecialityName</a>
+                    </td>
+                    <td>@Model[i].Email</td>
+                    <td>
+                        <form method="get" asp-controller="Teachers" asp-action="Evaluate"
+                            class="form-inline">
+                            <input class="form-control" type="text" placeholder="Score" 
+                                aria-label="Score" name="score" style="width: 100px;">
+                            <input class="form-control" type="date" style="margin-left: 10px;"
+                                name="date" value="@ViewBag.Date" id="date">
+                            <input type="hidden" name="sId" value="@Model[i].Id">
+                            <input type="hidden" name="cId" value="@ViewBag.CourseId">
+                            <button class="btn btn-primary" type="submit" style="margin-left: 10px;">
+                                Evaluate
+                            </button>
+                        </form>
+                        <a asp-action="WriteAttendance" asp-controller="Teachers" class="btn btn-danger"
+                            asp-route-sId="@Model[i].Id" asp-route-cId="@ViewBag.CourseId"
+                            asp-route-date="@DateTime.Now" style="margin-top: 10px;">
+                            Absent
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

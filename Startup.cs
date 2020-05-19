@@ -16,6 +16,8 @@ using Microsoft.IdentityModel.Tokens;
 using SDMS.Repos.Auth;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using SDMS.Repos.Students;
+using SDMS.Repos.Courses;
+using SDMS.Repos.Teachers;
 
 namespace SDMS
 {
@@ -47,6 +49,8 @@ namespace SDMS
             //=================== ADDING DEPENDENCY INJECTION ===================
             services.AddScoped<IAuthRepo, AuthRepo>();
             services.AddScoped<IStudentsRepo, StudentsRepo>();
+            services.AddScoped<ITeachersRepo, TeachersRepo>();
+            services.AddScoped<ICoursesRepo, CoursesRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

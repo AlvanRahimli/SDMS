@@ -33,24 +33,47 @@
                 <li class="nav-item">
                     <a asp-action="Choose" asp-controller="Students"></a>
                 </li>
-
-                @if (role == "student")
-                {
-                    <li class="nav-item active">
-                        <div class="dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
-                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Operations
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-action="LoadTaken" asp-controller="Students">Taken Courses</a>
-                                <a class="dropdown-item" asp-action="LoadScores" asp-controller="Students">Scores</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" asp-action="Choose" asp-controller="Students">Choose</a>
+                @{
+                    @if (role == "student")
+                    {
+                        <li class="nav-item active">
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
+                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Operations
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-action="LoadTaken" asp-controller="Students">Taken Courses</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" asp-action="LoadScores" asp-controller="Students">Scores</a>
+                                    <a class="dropdown-item" asp-action="LoadAttendances" asp-controller="Students">attendancies</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" asp-action="Choose" asp-controller="Students">Choose</a>
+                                </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
+                    }
+                    else if (role == "teacher")
+                    {
+                        <li class="nav-item active">
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
+                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Operations
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-action="Students" asp-controller="Teachers">Students</a>
+                                    <a class="dropdown-item" asp-action="Students" asp-controller="Teachers">Evaluate</a>
+                                    <a class="dropdown-item" asp-action="Students" asp-controller="Teachers">Write Attendance</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" asp-action="Courses" asp-controller="Teachers">My Courses</a>
+                                </div>
+                            </div>
+                        </li>
+                    }
                 }
+                
+
             </ul>
             @if (!User.Identity.IsAuthenticated)
             {

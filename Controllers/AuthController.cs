@@ -14,6 +14,7 @@ using SDMS.Data;
 using SDMS.Models;
 using SDMS.Models.Dtos;
 using SDMS.Repos.Auth;
+using SDMS.Repos.Courses;
 using SDMS.Utilities;
 
 namespace SDMS.Controllers
@@ -23,11 +24,13 @@ namespace SDMS.Controllers
     public class AuthController : Controller
     {
         private readonly IAuthRepo _repo;
+        private readonly ICoursesRepo _cRepo;
         private readonly SDMSContext _context; // TODO delete
 
-        public AuthController(IAuthRepo repo, SDMSContext context)
+        public AuthController(IAuthRepo repo, ICoursesRepo cRepo, SDMSContext context)
         {
             this._repo = repo;
+            this._cRepo = cRepo;
             this._context = context; // TODO delete
         }
 
@@ -87,8 +90,9 @@ namespace SDMS.Controllers
                     Name = c.Name
                 })
                 .ToListAsync();
+            var courses1 = await _cRepo.GetCoursesBrief();
 
-            ViewBag.Courses = courses;
+            ViewBag.Courses = courses1.Content;
             ViewBag.Error = error;
             ViewBag.Info = info;
             return View("RegisterTeacher");
